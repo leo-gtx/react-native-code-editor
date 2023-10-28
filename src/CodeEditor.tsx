@@ -167,6 +167,12 @@ const CodeEditor = (props: PropsWithForwardRef): JSX.Element => {
         }
     }, [onChange, value]);
 
+    useEffect(() => {
+        if(onChange && initialValue && initialValue !== value) {
+            onChange(initialValue)
+        }
+    },[onChange, initialValue])
+
     // Negative values move the cursor to the left
     const moveCursor = (current: number, amount: number) => {
         const newPosition = current + amount;
